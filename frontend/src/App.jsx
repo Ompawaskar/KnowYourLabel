@@ -1,11 +1,18 @@
 import './App.css'
+import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
 import Signup from './components/Signup/Signup'
+import Auth from './components/Auth/Auth.jsx'
 
 function App() {
   return (
-      <>
-        <Signup />
-        </>
+    <Router>
+  
+    <Routes>
+      <Route path="/" element={<Auth />} />
+      {/* <Route path="/about" element={<About />} />
+      <Route path="/profile" element={<Profile />} /> */}
+    </Routes>
+  </Router>
   )
 }
 
