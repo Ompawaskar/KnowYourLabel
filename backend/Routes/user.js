@@ -54,8 +54,10 @@ router.get("/signup", async (req, res) => {
       const userExist = await users.findOne({ userId: decodedToken.user_id }); 
       if (!userExist) {
         await newUserData(decodedToken, req, res);
+       
       } else {
        upadteUserData(decodedToken,req,res)
+       
       }
     }
   } catch (error) {
