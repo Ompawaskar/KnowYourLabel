@@ -1,8 +1,9 @@
 import { Input } from '@/components/ui/input';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight , ArrowLeft } from 'lucide-react';
+import { SignUpContext } from '@/context/SignUpContext';
 
 function Allergies({ setQuestionIndex }) {
     const allergens = [
@@ -17,9 +18,11 @@ function Allergies({ setQuestionIndex }) {
         { name: "Mustard" }
     ];
 
+    const {state,dispatch} = useContext(SignUpContext)
     const [allergies, setAllergies] = useState(allergens);
-    const [clickedAllergies, setClickedAllergies] = useState([]);
+    const [clickedAllergies, setClickedAllergies] = useState(state.allergies);
     const [input, setInput] = useState("");
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,6 +32,8 @@ function Allergies({ setQuestionIndex }) {
             setClickedAllergies([...clickedAllergies, newAllergy]);
             setInput(""); 
         }
+        
+        
     };
 
     const handleClick = (allergyName) => {
@@ -41,7 +46,9 @@ function Allergies({ setQuestionIndex }) {
 
     const handleNextPage = () => {
         setQuestionIndex(prev => prev + 1);
+        dispatch({type:"USER_INFO",payload:{"allergies": clickedAllergies}})
     };
+    
     const handlePrevPage = () => {
         setQuestionIndex(prev => prev - 1);
     };

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { ArrowRight , ArrowLeft } from 'lucide-react';
+import { SignUpContext } from '@/context/SignUpContext';
 
 function Disease({ setQuestionIndex }) {
     const diseasesData = [
@@ -18,8 +19,9 @@ function Disease({ setQuestionIndex }) {
         { name: "Cancer" }
     ];
 
+    const {state,dispatch} = useContext(SignUpContext);
     const [diseases, setDiseases] = useState(diseasesData);
-    const [clickedDiseases, setClickedDiseases] = useState([]);
+    const [clickedDiseases, setClickedDiseases] = useState(state.diseases);
     const [input, setInput] = useState("");
 
     const handleSubmit = (e) => {
@@ -42,7 +44,10 @@ function Disease({ setQuestionIndex }) {
 
     const handleNextPage = () => {
         setQuestionIndex(prev => prev + 1);
+        dispatch({type: "USER_INFO", dispatch: {"diseases": clickedDiseases}})
+        
     };
+    
     const handlePrevPage = () => {
         setQuestionIndex(prev => prev - 1);
     };

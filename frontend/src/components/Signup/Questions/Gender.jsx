@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { motion } from "framer-motion"
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ChevronLeftIcon } from 'lucide-react';
+import { SignUpContext } from '@/context/SignUpContext';
 
 
 function Gender({ setQuestionIndex }) {
-
-    const handleAvatarClick = () => {
+    const {dispatch} = useContext(SignUpContext);
+    
+    const handleAvatarClick = (gender) => {
+        dispatch({type:"USER_INFO" , payload:{"avatar" : gender}})
         setQuestionIndex(prev => prev + 1);
     };
+
     const handlePrevPage = () => {
         setQuestionIndex(prev => prev - 1);
     };
@@ -30,14 +34,18 @@ function Gender({ setQuestionIndex }) {
             <div className='flex justify-center items-center gap-32 mx-16'>
                 <div className='w-1/2 flex justify-end items-center'>
                     <Avatar className='w-1/2 h-1/2 cursor-pointer hover:scale-105 hover:ease-out'
-                        onClick={handleAvatarClick}>
+                        onClick={() => {
+                            handleAvatarClick('M')
+                        }}>
                         <AvatarImage src="/male_avatar.jpg" />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                 </div>
                 <div className='w-1/2 flex justify-start items-center'>
                     <Avatar className='w-1/2 h-1/2 cursor-pointer hover:scale-105 hover:ease-out'
-                        onClick={handleAvatarClick}>
+                        onClick={() => {
+                            handleAvatarClick('F')
+                        }}>
                         <AvatarImage src="/female_avatar.avif" />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
