@@ -20,14 +20,14 @@ function Gender({ setQuestionIndex }) {
 
     return (
         <motion.div
-            className=' w-full h-full flex flex-col justify-center items-center'>
+            className=' w-full h-full flex flex-col justify-center items-center overflow-hidden'>
             <div className='mb-8 flex justify-start w-full ml-4'>
                 <Button className = "bg-white px-4 hover:bg-white hover:scale-105" onClick={handlePrevPage}>
                     <ArrowLeft color='black'/>
                 </Button>
             </div>
 
-            <div className='mb-8 font-bold text-4xl  w-full'>
+            <div className='mb-8 font-bold text-4xl w-full text-center'>
                 <h1>Choose Your Avatar</h1>
                 <h2 className='text-xl text-muted-foreground'>Are you a dapper dude or a fierce femme</h2>
             </div>

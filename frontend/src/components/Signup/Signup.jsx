@@ -8,8 +8,7 @@ import { Progress } from "@/components/ui/progress";
 
 function Signup() {
     const [questionIndex, setQuestionIndex] = useState(0);
-    console.log(questionIndex);
-
+    
     return (
         <>
             <div>

@@ -22,6 +22,7 @@ function Allergies({ setQuestionIndex }) {
     const [allergies, setAllergies] = useState(allergens);
     const [clickedAllergies, setClickedAllergies] = useState(state.allergies);
     const [input, setInput] = useState("");
+    console.log(state);
     
 
     const handleSubmit = (e) => {
@@ -53,9 +54,10 @@ function Allergies({ setQuestionIndex }) {
         setQuestionIndex(prev => prev - 1);
     };
 
+
     return (
         <motion.div
-            className='w-full h-full mt-16'
+            className='w-full h-full mt-16 overflow-hidden'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -66,14 +68,17 @@ function Allergies({ setQuestionIndex }) {
                     <ArrowLeft color='black'/>
                 </Button>
             </div>
-            <div className='mb-8 font-semibold text-4xl'>
+            <div className='mb-8 font-semibold text-4xl text-center'>
                 <h1 className='mb-2'>Select Your Allergies</h1>
                 <h2 className='text-lg text-muted-foreground'>Help us identify the foods you should avoid to ensure a safe and enjoyable experience.</h2>
             </div>
-            <form className='mb-8' onSubmit={handleSubmit}>
-                <Input placeholder="Enter any allergy" value={input} onInput={(e) => setInput(e.target.value)} />
+            <form className='mb-8 mx-12' onSubmit={handleSubmit}>
+                <Input placeholder="Enter any allergy" value={input} onInput={(e) => {
+                    setInput(e.target.value)
+                    autoComplete(e.target.value)
+                    }} />
             </form>
-            <div className='flex flex-wrap gap-4'>
+            <div className='flex flex-wrap gap-4 justify-center'>
                 {allergies.map((allergy, index) => (
                     <button
                         key={index}
@@ -84,8 +89,8 @@ function Allergies({ setQuestionIndex }) {
                     </button>
                 ))}
             </div>
-            <div className='mt-24'>
-            <Button className="bg-white text-black shadow-lg hover:border hover:bg-white hover:border-yellow-300" onClick = {handleNextPage}>
+            <div className='mt-16 flex justify-center items-center'>
+            <Button className="bg-white text-black shadow-lg hover:border hover:bg-white hover:border-yellow-300 " onClick = {handleNextPage}>
                 Continue <ArrowRight className='ml-2 text-black hover:text-yellow-300' />
             </Button>
             </div>
