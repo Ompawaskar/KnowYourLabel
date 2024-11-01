@@ -5,6 +5,7 @@ import Gender from './Questions/Gender';
 import Allergies from './Questions/Allergies';
 import Disease from './Questions/Disease';
 import { Progress } from "@/components/ui/progress";
+import SignupForm from './Questions/SignupForm';
 
 function Signup() {
     const [questionIndex, setQuestionIndex] = useState(0);
@@ -62,6 +63,18 @@ function Signup() {
                             className='flex justify-center items-center w-full h-full'
                         >
                             <Disease setQuestionIndex={setQuestionIndex} />
+                        </motion.div>
+                    )}
+                    {questionIndex === 4 && (
+                        <motion.div
+                            key="disease"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className='flex justify-center items-center w-full h-full'
+                        >
+                            <SignupForm setQuestionIndex={setQuestionIndex} />
                         </motion.div>
                     )}
                 </AnimatePresence>
